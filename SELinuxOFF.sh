@@ -1,8 +1,9 @@
 menu(){
-    echo "这關閉CentOS7 SELinux的一鍵脚本"
-    echo "1. Disable SELinux_关闭SELinux"
+    echo "This is a Shell Script to Disable SELinux on CentOS 7"
+    echo "這是關閉CentOS7 SELinux的一鍵脚本"
+    echo "1. Disable SELinux_關閉SELinux"
     echo "0. Exit_退出脚本"
-    read -n2 -p "Please Enter an Option_请输入选项：" menuChoose
+    read -n2 -p "Please Enter an Option_請輸入選項：" menuChoose
     case ${menuChoose} in
         1) shutselfire ;;
         0) exit 0
