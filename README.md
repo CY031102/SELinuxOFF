@@ -14,6 +14,6 @@ A script that allows you to turn off SELinux in 10 seconds
       2. Disable SELinux Only
          僅關閉SElinux
       3. Disable firewalld Only
-         僅關閉 firewalld
+         僅關閉firewalld
       0. Exit
          退出脚本
