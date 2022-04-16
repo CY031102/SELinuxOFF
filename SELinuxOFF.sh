@@ -25,9 +25,9 @@ shutselfire(){
 		echo "firewalld is inactive"
 		echo "firewalld 已關閉或未啓動"
 	else
-		echo "Detected firewalld is running/dead/not installed, will initialize firewalld shutdown"
+		echo "Detected firewalld is running/dead/not installed, will initiate firewalld shutdown"
 		echo "檢測firewalld可能在運行中/不存在，開始執行關閉"
-		echo "System will initialize the process in 3 seconds, use Ctrl+C to cancel"
+		echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
 		echo "系統將在3秒后開始關閉firewalld，使用Ctrl+C取消"
 		#sleep-for-3-seconds_等待3秒
 		sleep 3s
@@ -43,14 +43,14 @@ shutselfire(){
 	else
 		echo "Detected SELinux enabled, starting disable process"
 		echo "檢測SELunix已啓用，開始執行關閉"
-		echo "Systm will initialize the process in 3 seconds, use Ctrl+C to cancel"
+		echo "Systm will initiate the process in 3 seconds, use Ctrl+C to cancel"
 		echo "系統將在3秒后開始關閉SELunix，使用Ctrl+C取消"
 		#sleep-for-3-seconds_等待3秒
 		sleep 3s
 		sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 		sed -i 's/SELINUXTYPE=targeted/#SELINUXTYPE=targeted/g' /etc/selinux/config
 		#reboot_重新啓動
-		echo "A reboot is requiered to Completely disable SELinux, the process will initiate in 5 seconds, use Ctrl+C to cancel"
+		echo "A reboot is required to completely disable SELinux, the process will initiate in 5 seconds, use Ctrl+C to cancel"
 		echo "由於完整關閉SELinux需要重新啓動，系統會在5秒後重啓，使用Ctrl+C取消"
 		sleep 5s
 		reboot
@@ -67,14 +67,14 @@ shutsel(){
 	else
 		echo "Detected SELinux enabled, starting disable process"
 		echo "檢測SELunix已啓用，開始執行關閉"
-		echo "Systm will initialize the process in 3 seconds, use Ctrl+C to cancel"
+		echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
 		echo "系統將在3秒后開始關閉SELunix，使用Ctrl+C取消"
 		#sleep-for-3-seconds_等待3秒
 		sleep 3s
 		sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 		sed -i 's/SELINUXTYPE=targeted/#SELINUXTYPE=targeted/g' /etc/selinux/config
 		#reboot_重新啓動
-		echo "A reboot is requiered to Completely disable SELinux, the process will initiate in 5 seconds, use Ctrl+C to cancel"
+		echo "A reboot is required to completely disable SELinux, the process will initiate in 5 seconds, use Ctrl+C to cancel"
 		echo "由於完整關閉SELinux需要重新啓動，系統會在5秒後重啓，使用Ctrl+C取消"
 		sleep 5s
 		reboot
@@ -89,9 +89,9 @@ shutfire(){
 		echo "firewalld is inactive"
 		echo "firewalld 已關閉或未啓動"
 	else
-		echo "Detected firewalld is running/dead/not installed, will initialize firewalld shutdown"
+		echo "Detected firewalld is running/dead/not installed, will initiate firewalld shutdown"
 		echo "檢測firewalld可能在運行中/不存在，開始執行關閉"
-		echo "System will initialize the process in 3 seconds, use Ctrl+C to cancel"
+		echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
 		echo "系統將在3秒后開始關閉firewalld，使用Ctrl+C取消"
 		#sleep-for-3-seconds_等待3秒
 		sleep 3s
