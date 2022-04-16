@@ -6,7 +6,7 @@ menu(){
 	echo "2. Disable SELinux Only"
 	echo "   僅關閉SElinux"
 	echo "3. Disable firewalld Only"
-	echo "   僅關閉 firewalld"
+	echo "   僅關閉firewalld"
     echo "0. Exit"
 	echo "   退出脚本"
     read -n2 -p "Please Enter an Option_請輸入選項：" menuChoose
