@@ -2,7 +2,7 @@ menu(){
     echo "This is a Shell Script to Disable SELinux & firewalld on CentOS 7"
     echo "這是關閉CentOS7 SELinux & firewalld 的一鍵脚本"
     echo "1. Disable SELinux & firewalld"
-	echo "   關閉SELinux & Firewalld"
+	echo "   關閉SELinux & firewalld"
 	echo "2. Disable SELinux Only"
 	echo "   僅關閉SElinux"
 	echo "3. Disable firewalld Only"
