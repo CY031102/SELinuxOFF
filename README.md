@@ -10,7 +10,7 @@ A script that allows you to turn off SELinux in 10 seconds
       This is a Shell Script to Disable SELinux & firewalld on CentOS 7
       這是關閉CentOS7 SELinux & firewalld 的一鍵脚本
       1. Disable SELinux & firewalld
-         關閉SELinux & Firewalld
+         關閉SELinux & firewalld
       2. Disable SELinux Only
          僅關閉SElinux
       3. Disable firewalld Only
