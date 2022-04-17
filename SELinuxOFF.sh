@@ -1,6 +1,7 @@
 menu(){
     echo "This is a Shell Script to Disable SELinux & firewalld on CentOS 7"
     echo "這是關閉CentOS7 SELinux & firewalld 的一鍵脚本"
+	echo "v1.2.0"
     echo "1. Disable SELinux & firewalld"
 	echo "   關閉SELinux & firewalld"
 	echo "2. Disable SELinux Only"
@@ -19,29 +20,51 @@ menu(){
 }
 
 shutselfire(){
-	check_two=`systemctl status firewalld | grep "dead"`
-	if [[ $check_two ]]
-	then
-		echo "firewalld is inactive"
-		echo "firewalld 已關閉或未啓動"
-	else
-		echo "Detected firewalld is running/dead/not installed, will initiate firewalld shutdown"
-		echo "檢測firewalld可能在運行中/不存在，開始執行關閉"
-		echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
-		echo "系統將在3秒后開始關閉firewalld，使用Ctrl+C取消"
-		#sleep-for-3-seconds_等待3秒
-		sleep 3s
-		systemctl stop firewalld.service
-		systemctl disable firewalld.service
+	check_two=`systemctl status firewalld | grep "running"`
+	check_three=`systemctl status firewalld | grep "dead"`
+	echo 'If command line responds as' '"Unit firewalld.service could not be found."'" It means that you did not install firewalld"
+	echo "(You can ignore the error)"
+	echo '若命令行反饋' '"Unit firewalld.service could not be found."'" 代表你沒有安裝firewalld"
+	echo "（無視報錯即可）"
+	if [[ $check_two ]];then
+		if [[ $check_three -ne dead ]];then
+			echo "Detected firewalld is running, will initiate firewalld shutdown & disable"
+			echo "檢測firewalld在運行中，開始執行關閉 & 禁用"
+			echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
+			echo "系統將在3秒后開始關閉 & 禁用firewalld，使用Ctrl+C取消"
+			#sleep-for-3-seconds_等待3秒
+			sleep 3s
+			systemctl stop firewalld.service
+			systemctl disable firewalld.service
+				if [[ $check_three ]];then
+					echo "firewalld is now disabled & Will not start on next boot"
+					echo "firewalld 現在已禁用 & 重啓後將不會自啓"
+				fi
+		fi
+	else		
+		if [[ $check_three ]]
+		then
+			echo "Detected firewalld is dead, will disable firewalld auto start on boot"
+			echo "檢測firewalld在已關閉，開始禁用開機自啓動"
+			echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
+			echo "系統將在3秒后開始禁用firewalld開機自啓，使用Ctrl+C取消"
+			#sleep-for-3-seconds_等待3秒
+			sleep 3s
+			systemctl disable firewalld.service
+			echo "firewalld will not start on next boot"
+			echo "firewalld 將不會在重啓後自啓"	
+		fi
 	fi
 	
-	check=`sestatus | grep "dis"`
+
+	
+	check=`getenforce | grep "Dis"`
 	if [[ $check ]]
 	then
-		echo "SELinux Disabled"
-		echo "SELinux 已禁用"
+		echo "SELinux is Disabled by default"
+		echo "SELinux 默認未啓用"
 	else
-		echo "Detected SELinux enabled, starting disable process"
+		echo "Detected SELinux Enabled, starting Disable process"
 		echo "檢測SELunix已啓用，開始執行關閉"
 		echo "Systm will initiate the process in 3 seconds, use Ctrl+C to cancel"
 		echo "系統將在3秒后開始關閉SELunix，使用Ctrl+C取消"
@@ -59,13 +82,13 @@ shutselfire(){
 }	
 
 shutsel(){
-	check=`sestatus | grep "dis"`
+	check=`getenforce | grep "Dis"`
 	if [[ $check ]]
 	then
-		echo "SELinux Disabled"
-		echo "SELinux 已禁用"
+		echo "SELinux is Disabled by default"
+		echo "SELinux 默認未啓用"
 	else
-		echo "Detected SELinux enabled, starting disable process"
+		echo "Detected SELinux Enabled, starting Disable process"
 		echo "檢測SELunix已啓用，開始執行關閉"
 		echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
 		echo "系統將在3秒后開始關閉SELunix，使用Ctrl+C取消"
@@ -83,22 +106,43 @@ shutsel(){
 }	
 
 shutfire(){
-	check_two=`systemctl status firewalld | grep "dead"`
-	if [[ $check_two ]]
-	then
-		echo "firewalld is inactive"
-		echo "firewalld 已關閉或未啓動"
-	else
-		echo "Detected firewalld is running/dead/not installed, will initiate firewalld shutdown"
-		echo "檢測firewalld可能在運行中/不存在，開始執行關閉"
-		echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
-		echo "系統將在3秒后開始關閉firewalld，使用Ctrl+C取消"
-		#sleep-for-3-seconds_等待3秒
-		sleep 3s
-		systemctl stop firewalld.service
-		systemctl disable firewalld.service
+	check_two=`systemctl status firewalld | grep "running"`
+	check_three=`systemctl status firewalld | grep "dead"`
+	echo 'If command line responds as' '"Unit firewalld.service could not be found."'" It means that you did not install firewalld"
+	echo "(You can ignore the error)"
+	echo '若命令行反饋' '"Unit firewalld.service could not be found."'" 代表你沒有安裝firewalld"
+	echo "（無視報錯即可）"
+	if [[ $check_two ]];then
+		if [[ $check_three -ne dead ]];then
+			echo "Detected firewalld is running, will initiate firewalld shutdown & disable"
+			echo "檢測firewalld在運行中，開始執行關閉 & 禁用"
+			echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
+			echo "系統將在3秒后開始關閉 & 禁用firewalld，使用Ctrl+C取消"
+			#sleep-for-3-seconds_等待3秒
+			sleep 3s
+			systemctl stop firewalld.service
+			systemctl disable firewalld.service
+				if [[ $check_three ]];then
+					echo "firewalld is now disabled & Will not start on next boot"
+					echo "firewalld 現在已禁用 & 重啓後將不會自啓"
+				fi
+		fi
+	else		
+		if [[ $check_three ]]
+		then
+			echo "Detected firewalld is dead, will disable firewalld auto start on boot"
+			echo "檢測firewalld在已關閉，開始禁用開機自啓動"
+			echo "System will initiate the process in 3 seconds, use Ctrl+C to cancel"
+			echo "系統將在3秒后開始禁用firewalld開機自啓，使用Ctrl+C取消"
+			#sleep-for-3-seconds_等待3秒
+			sleep 3s
+			systemctl disable firewalld.service
+			echo "firewalld will not start on next boot"
+			echo "firewalld 將不會在重啓後自啓"	
+		fi
 	fi
-
+	
 }
+
 
 menu
