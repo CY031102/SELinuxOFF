@@ -1,5 +1,6 @@
 # SELinuxOFF
 A script that allows you to turn off SELinux in 10 seconds
+
 Made for CentOS 7
 
 ## Usage
