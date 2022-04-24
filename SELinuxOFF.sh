@@ -1,7 +1,7 @@
 menu(){
     echo "This is a Shell Script to Disable SELinux & firewalld on CentOS 7"
     echo "這是關閉CentOS7 SELinux & firewalld 的一鍵脚本"
-	echo "v1.2.0"
+	echo "v1.2.5"
     echo "1. Disable SELinux & firewalld"
 	echo "   關閉SELinux & firewalld"
 	echo "2. Disable SELinux Only"
@@ -70,8 +70,20 @@ shutselfire(){
 		echo "系統將在3秒后開始關閉SELunix，使用Ctrl+C取消"
 		#sleep-for-3-seconds_等待3秒
 		sleep 3s
-		sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-		sed -i 's/SELINUXTYPE=targeted/#SELINUXTYPE=targeted/g' /etc/selinux/config
+		sed -i '1,$d' /etc/selinux/config
+		cat > /etc/selinux/config <<EOL
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#       enforcing - SELinux security policy is enforced.
+#       permissive - SELinux prints warnings instead of enforcing.
+#       disabled - No SELinux policy is loaded.
+SELINUX=disabled
+# SELINUXTYPE= can take one of these two values:
+#       targeted - Targeted processes are protected,
+#       mls - Multi Level Security protection.
+#SELINUXTYPE=targeted
+EOL
+	
 		#reboot_重新啓動
 		echo "A reboot is required to completely disable SELinux, the process will initiate in 5 seconds, use Ctrl+C to cancel"
 		echo "由於完整關閉SELinux需要重新啓動，系統會在5秒後重啓，使用Ctrl+C取消"
@@ -94,8 +106,19 @@ shutsel(){
 		echo "系統將在3秒后開始關閉SELunix，使用Ctrl+C取消"
 		#sleep-for-3-seconds_等待3秒
 		sleep 3s
-		sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-		sed -i 's/SELINUXTYPE=targeted/#SELINUXTYPE=targeted/g' /etc/selinux/config
+		sed -i '1,$d' /etc/selinux/config
+		cat > /etc/selinux/config <<EOL
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#       enforcing - SELinux security policy is enforced.
+#       permissive - SELinux prints warnings instead of enforcing.
+#       disabled - No SELinux policy is loaded.
+SELINUX=disabled
+# SELINUXTYPE= can take one of these two values:
+#       targeted - Targeted processes are protected,
+#       mls - Multi Level Security protection.
+#SELINUXTYPE=targeted
+EOL
 		#reboot_重新啓動
 		echo "A reboot is required to completely disable SELinux, the process will initiate in 5 seconds, use Ctrl+C to cancel"
 		echo "由於完整關閉SELinux需要重新啓動，系統會在5秒後重啓，使用Ctrl+C取消"
