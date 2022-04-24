@@ -9,13 +9,4 @@ Made for CentOS 7
       ./SELinuxOFF.sh
 
 ## Menu
-      This is a Shell Script to Disable SELinux & firewalld on CentOS 7
-      這是關閉CentOS7 SELinux & firewalld 的一鍵脚本
-      1. Disable SELinux & firewalld
-         關閉SELinux & firewalld
-      2. Disable SELinux Only
-         僅關閉SElinux
-      3. Disable firewalld Only
-         僅關閉firewalld
-      0. Exit
-         退出脚本
+![image](https://user-images.githubusercontent.com/52792159/164973273-c92aa7e2-aced-452e-b87a-e50515f154ef.png)
